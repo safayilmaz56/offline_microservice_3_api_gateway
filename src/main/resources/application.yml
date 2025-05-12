@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api_gateway
+  cloud: # Spring Cloud Gateway istekleri yönlendirmek içindir
+    gateway:
+      routes: # Birden fazla yönlendirme içindir.
+        - id: product-service # Bu rota için benzersiz bir kimlik (ID) tanımlanır
+          uri: lb//PRODUCT-SERVICE
+          predicates:
+            - PATH=/products/**
+
+        - id: order-service
+          uri: lb//ORDER-SERVICE
+          predicates:
+            - PATH=/orders/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
