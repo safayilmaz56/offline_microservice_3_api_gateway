@@ -8,14 +8,14 @@ spring:
     gateway:
       routes: # Birden fazla yönlendirme içindir.
         - id: product-service # Bu rota için benzersiz bir kimlik (ID) tanımlanır
-          uri: lb//PRODUCT-SERVICE
+          uri: lb://PRODUCT-SERVICE
           predicates:
-            - PATH=/products/**
+            - Path=/products/**
 
         - id: order-service
-          uri: lb//ORDER-SERVICE
+          uri: lb://ORDER-SERVICE
           predicates:
-            - PATH=/orders/**
+            - Path=/orders/**
 
 eureka:
   client:
